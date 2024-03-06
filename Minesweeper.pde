@@ -125,7 +125,7 @@ public class MSButton{
 
     // called by Manager
     public void mousePressed() {
-        if(firstClick && mines.contains(click)){
+        if(firstClick && mines.contains(this)){
             for(int i = mines.size() - 1; i >= 0; i--){
                 mines.remove(i);
             }
