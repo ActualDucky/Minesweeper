@@ -5,15 +5,15 @@ public final static int NUM_ROWS = 20;
 public final static int MINE_COUNT = 60;
 public boolean firstClick;
 public int minedCount;
-private MSButton[][] buttons; //2d array of minesweeper buttons
-private ArrayList <MSButton> mines; //ArrayList of just the minesweeper buttons that are mined
+private MSButton[][] buttons; //2D ARRAY
+private ArrayList <MSButton> mines; 
 
 void setup (){
     size(400, 400);
     textAlign(CENTER,CENTER);
     
     // make the manager
-    Interactive.make( this );
+    Interactive.make(click);
     
     //your code to initialize buttons goes here
     buttons = new MSButton[NUM_ROWS][NUM_COLS];
@@ -120,12 +120,12 @@ public class MSButton{
         myLabel = "";
         flagged = clicked = false;
         game = clickable = true;
-        Interactive.add( this ); // register it with the manager
+        Interactive.add(click); //Manager
     }
 
-    // called by manager
+    // called by Manager
     public void mousePressed() {
-        if(firstClick && mines.contains(this)){
+        if(firstClick && mines.contains(click)){
             for(int i = mines.size() - 1; i >= 0; i--){
                 mines.remove(i);
             }
@@ -151,7 +151,7 @@ public class MSButton{
                     flagged = true;
                 }
             }
-               else if(mines.contains(this)){
+               else if(mines.contains(click)){
                 displayLosingMessage();
             }
               else if(countMines(myRow, myCol) > 0){
@@ -175,7 +175,7 @@ public class MSButton{
     public void draw () {    
         if (flagged)
             fill(0);
-        else if( clicked && mines.contains(this) ) 
+        else if(clicked && mines.contains(click) ) 
             fill(255,0,0);
         else if(clicked)
             fill(200);
