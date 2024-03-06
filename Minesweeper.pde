@@ -13,7 +13,7 @@ void setup (){
     textAlign(CENTER,CENTER);
     
     // make the manager
-    Interactive.make(click);
+    Interactive.make(this);
     
     //your code to initialize buttons goes here
     buttons = new MSButton[NUM_ROWS][NUM_COLS];
@@ -120,7 +120,7 @@ public class MSButton{
         myLabel = "";
         flagged = clicked = false;
         game = clickable = true;
-        Interactive.add(click); //Manager
+        Interactive.add(this); //Manager
     }
 
     // called by Manager
@@ -151,7 +151,7 @@ public class MSButton{
                     flagged = true;
                 }
             }
-               else if(mines.contains(click)){
+               else if(mines.contains(this)){
                 displayLosingMessage();
             }
               else if(countMines(myRow, myCol) > 0){
@@ -175,7 +175,7 @@ public class MSButton{
     public void draw () {    
         if (flagged)
             fill(0);
-        else if(clicked && mines.contains(click) ) 
+        else if(clicked && mines.contains(this) ) 
             fill(255,0,0);
         else if(clicked)
             fill(200);
